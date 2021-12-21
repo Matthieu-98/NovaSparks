@@ -68,7 +68,7 @@ if __name__ == "__main__":
             colonne = 0
             ligne += 1
     
-    b = Label(fen, text = "Effacer", bg = "#984447", fg = "#FFF", height = 4, width = 27)
+    b = Label(fen, text = "Effacer", bg = "darkred", fg = "#FFF", height = 4, width = 27)
     b.bind("<Button-1>",lambda element: effacer())
     b.grid(columnspan=4)
     fen.mainloop()
