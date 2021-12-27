@@ -19,55 +19,67 @@
 #_ Lecture
 #_ Écriture
 
-repertoire = {"Marc" : "06 43 66 75 82" , 
-             "Matthieu" : "07 60 65 57 31" }
+Name = ["Marc", "Matthieu"] 
+Phonenumber = ["06 43 66 75 82", "07 60 65 57 31"]
+repertoire = dict(zip(Name, Phonenumber))
 
 # Mise à Jour du répertoire :        
-def ecriture (w, x) :
+def ecriture () :
+    
+    w = (input("saisir un nom : "))
+    x = (input("saisir un numéro : "))
+    Name.append(w)
+    Phonenumber.append(x)
+    repertoire = dict(zip(Name, Phonenumber))
+  
+    
     while (w != 0 ):
-        w = (input("saisir un nom (entrer 0 pour terminer) : "))
-        x = (input("saisir un numéro : "))
-        repertoire["w"] = x
-        
+        w = int(input("saisir un nom (entrer 0 pour terminer) : "))
         if (w == 0) :
-            for num in repertoire.values():
-                print(num)
-            for name in repertoire.keys():
-                print(name)
-            print("répertoire mis à jour")    
-            menu()
             break
+        x = (input("saisir un numéro : "))
+        Name.append(w)
+        Phonenumber.append(x) 
+        repertoire = dict(zip(Name, Phonenumber))
+        
+      
+        
+    print(repertoire)
+    print("répertoire mis à jour")
+    menu()   
+        
                 
 
 # Recherche d'un particulier présent dans le répertoire      
 def lecture(name) :
-    for name in repertoire.keys():
-        if (bool (repertoire.has_key(name) ) == 1):
-            print("Le numero recherché est : ", repertoire.get(name))
+    for i in range (0,len(Name)) :
+        if (Name[i] == name):
+            print("Le numero associé à",name,"est :",repertoire.get(name))
         else :
             print("inconnu : ") 
+    menu()
 
 
 # Affichage du menu :
 
-def menu () :
+def menu ():
    
-    while True :
+    print("Bienvenue dans le menu principal ! ")
+    choix = int(input("veuillez choisir une action (0) (1) (2) : "))
+    
+    while (choix != 0 and choix != 1 and choix != 2) :
         print("Bienvenue dans le menu principal ! ")
         choix = int(input("veuillez choisir une action (0) (1) (2) : "))
         
-        if (choix == 1):
-            choix2 = input("saisir un nom (entrer 0 pour terminer) : ")
-            choix3 = input("saisir un numéro : ")
-            ecriture(choix2, choix3)
-            if(choix == 0):
-                menu()
-                break
-                
-        if (choix == 2) :
-            choix4 = input("saisir un nom : ")
-            lecture(choix4)
-            menu()
-            break
-       
+    if (choix == 1):
+        ecriture()
+    
+    if(choix == 0):
+        print("fin de programme")
+        return
+        
+    if (choix == 2) :
+        choix2 = input("saisir un nom : ")
+        lecture(choix2)
+
 menu()
